@@ -19,6 +19,14 @@ jobs:
           path: profile/stats.svg
           token: ${{ secrets.STATS }}
 
+      - name: Generate repo stats card  # Repo-specific
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: pin  # Or 'stats' if fork supports repo mode
+          options: repo=${{ github.repository_owner }}/${{ github.event.repository.name }}&show_icons=true
+          path: profile/repo-stats.svg
+          token: ${{ secrets.STATS }}
+
       - name: Commit cards
         run: |
           git config user.name "github-actions"
